@@ -1,4 +1,4 @@
-export function BlogList({ blogs, title, handleDelete }) {
+export function BlogList({ blogs, title }) {
    return (
       <div className="blog-list">
          <h1>{title}</h1>
@@ -7,7 +7,6 @@ export function BlogList({ blogs, title, handleDelete }) {
             <div className="blog-preview" key={blog.id}>
                <h2>{blog.title} </h2>
                <p>{blog.author}</p>
-               <button onClick={() => handleDelete(blog.id)}>Delete</button>
             </div>
          ))}
       </div>
