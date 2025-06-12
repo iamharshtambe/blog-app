@@ -1,15 +1,22 @@
 import './index.css';
 import { Navbar } from './components/Navbar';
 import { Home } from './components/Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CreateBlog } from './components/CreateBlog';
 
 export default function App() {
    return (
-      <div className="app">
-         <Navbar />
+      <Router>
+         <div className="app">
+            <Navbar />
 
-         <div className="content">
-            <Home />
+            <div className="content">
+               <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/create" element={<CreateBlog />} />
+               </Routes>
+            </div>
          </div>
-      </div>
+      </Router>
    );
 }
