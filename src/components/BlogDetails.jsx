@@ -11,7 +11,7 @@ export function BlogDetails() {
 
    return (
       <div className="blog-details">
-         {error && <div>{error.message}</div>}
+         {error && <div>{error}</div>}
          {isLoading && <div>Loading...</div>}
          {blog && (
             <article>
