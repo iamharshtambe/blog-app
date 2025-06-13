@@ -1,15 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function CreateBlog() {
    const [title, setTitle] = useState('');
    const [content, setContent] = useState('');
-   const [author, setAuthor] = useState('mario');
+   const [author, setAuthor] = useState('Harsh');
    const [isloading, setIsLoading] = useState(false);
+   const navigate = useNavigate();
 
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      const blog = { title, body, author };
+      const blog = { title, content, author };
 
       setIsLoading(true);
 
@@ -19,6 +21,7 @@ export function CreateBlog() {
          body: JSON.stringify(blog),
       }).then(() => {
          setIsLoading(false);
+         navigate('/');
       });
    };
 
