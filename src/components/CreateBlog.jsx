@@ -4,11 +4,28 @@ export function CreateBlog() {
    const [title, setTitle] = useState('');
    const [content, setContent] = useState('');
    const [author, setAuthor] = useState('mario');
+   const [isloading, setIsLoading] = useState(false);
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+
+      const blog = { title, body, author };
+
+      setIsLoading(true);
+
+      fetch('http://localhost:8000/blogs', {
+         method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify(blog),
+      }).then(() => {
+         setIsLoading(false);
+      });
+   };
 
    return (
       <div className="create">
          <h2>Add new blog</h2>
-         <form>
+         <form onSubmit={handleSubmit}>
             <label>Blog Title:</label>
             <input
                type="text"
@@ -30,7 +47,8 @@ export function CreateBlog() {
                <option value="Sumit">Sumit</option>
             </select>
 
-            <button>Add Blog</button>
+            {!isloading && <button>Add Blog</button>}
+            {isloading && <button disabled>Adding Blog...</button>}
          </form>
       </div>
    );
